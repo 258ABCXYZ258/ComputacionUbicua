@@ -1,1 +1,13 @@
+int LED = 13;				// LED en pin 3
+int BRILLO;
 
+void setup(){
+	pinMode(LED, OUTPUT);		// pin 3 como salida
+}
+
+void loop(){
+ digitalWrite (LED, HIGH);
+ delay(1000);
+ digitalWrite (LED, LOW);
+ delay(1000);  
+  }
