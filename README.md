@@ -1,2 +1,2 @@
 # Optativa1
-Subir los lab de la clase
+Subir los laboratorios de la clase
