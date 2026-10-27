@@ -1,19 +1,81 @@
-int SENSOR;
-float TEMPERATURA;
-float SUMA;
+// Declaración de entradas/pines del receptor RF
+int forward = 13;
+int backwards = 12;
+int left = 11;
+int right = 10;
 
 void setup() {
+  // Pines de control del puente H (motores)
+  pinMode(7, OUTPUT); // Pin de dirección motor derecho
+  pinMode(6, OUTPUT); // Pin de PWM motor derecho
+  pinMode(5, OUTPUT); // Pin de PWM motor izquierdo
+  pinMode(4, OUTPUT); // Pin de dirección motor izquierdo
+
+  // Pines de entrada para las señales RF
+  pinMode(forward, INPUT);
+  pinMode(backwards, INPUT);
+  pinMode(left, INPUT);
+  pinMode(right, INPUT);
+
   Serial.begin(9600);
 }
 
 void loop() {
-  SUMA = 0;
-  for (int i = 0; i < 5; i++) {
-    SENSOR = analogRead(A0);
-    TEMPERATURA = ((SENSOR * 5000.0) / 1023) / 10;
-    SUMA = TEMPERATURA + SUMA;
-    delay(500);
-  }
+  // Lectura de los estados de entrada
+  int forwardValue = digitalRead(forward);
+  int backwardsValue = digitalRead(backwards);
+  int leftValue = digitalRead(left);
+  int rightValue = digitalRead(right);
 
-  Serial.println(SUMA / 5.0, 1);
+  // Control de movimiento condicional
+  if (forwardValue == HIGH) {
+    adelante(85, 85);
+  } 
+  else if (backwardsValue == HIGH) {
+    atras(85, 85);
+  } 
+  else if (leftValue == HIGH) {
+    izquierda(85, 85);
+  } 
+  else if (rightValue == HIGH) {
+    derecha(85, 85);
+  } 
+  else {
+    parar();
+  }
+}
+
+// --- Funciones de movimiento ---
+
+void adelante(int velIzquierda, int velDerecha) {
+  digitalWrite(7, HIGH);
+  analogWrite(6, velDerecha);
+  analogWrite(5, velIzquierda);
+  digitalWrite(4, HIGH);
+}
+
+void atras(int velIzquierda, int velDerecha) {
+  digitalWrite(7, LOW);
+  analogWrite(6, velDerecha);
+  analogWrite(5, velIzquierda);
+  digitalWrite(4, LOW);
+}
+
+void izquierda(int velIzquierda, int velDerecha) {
+  digitalWrite(7, HIGH);
+  analogWrite(6, velDerecha);
+  analogWrite(5, velIzquierda);
+  digitalWrite(4, LOW);
+}
+
+void derecha(int velIzquierda, int velDerecha) {
+  digitalWrite(7, LOW);
+  analogWrite(6, velDerecha);
+  analogWrite(5, velIzquierda);
+  digitalWrite(4, HIGH);
+}
+
+void parar() {
+  analogWrite(6, 0);
+  analogWrite(5, 0);
 }

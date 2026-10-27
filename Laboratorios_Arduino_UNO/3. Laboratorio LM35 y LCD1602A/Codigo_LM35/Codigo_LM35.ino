@@ -1,34 +1,27 @@
-#include "DHT.h"
+#include <LiquidCrystal.h>
 
-#define SENSOR_PIN 2     // Pin digital conectado al DHT22
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
-// Inicialización del sensor DHT22
-DHT dht(SENSOR_PIN, DHT22);
+int SENSOR;
+float TEMPERATURA;
+float SUMA;
 
 void setup() {
-  Serial.begin(9600);
-  dht.begin();
-  Serial.println("Iniciando sensor DHT22...");
+  lcd.begin(16, 2);
+  // Las entradas analógicas no requieren inicialización
 }
 
 void loop() {
-  // Esperar 2 segundos entre lecturas (requerido por el DHT22)
-  delay(2000);
-
-  // Leer humedad y temperatura
-  float humedad = dht.readHumidity();
-  float temperatura = dht.readTemperature();
-
-  // Verificar si hubo un fallo en la lectura
-  if (isnan(humedad) || isnan(temperatura)) {
-    Serial.println("Error al leer el sensor DHT22");
-    return;
+  SUMA = 0;
+  for (int i = 0; i < 5; i++) {
+    SENSOR = analogRead(A0);
+    TEMPERATURA = ((SENSOR * 5000.0) / 1023) / 10;
+    SUMA = TEMPERATURA + SUMA;
+    delay(500);
   }
-
-  // Mostrar resultados en el Monitor Serial
-  Serial.print("Temperatura: ");
-  Serial.print(temperatura);
-  Serial.print(" °C  |  Humedad: ");
-  Serial.print(humedad);
-  Serial.println(" %");
+  
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(SUMA / 5.0, 1);
+  lcd.print(" C");
 }
