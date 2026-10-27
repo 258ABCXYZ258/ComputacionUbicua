@@ -1,15 +1,15 @@
-Simulación 4.1 PWM con LED para Brillo/Intensidad
+Simulación 3.1 
 
--Tinkercad: https://www.tinkercad.com/things/gxtRAgX40Xd-lab021
+-Tinkercad: https://www.tinkercad.com/things/ljxcLUyTBVH-lab-31
 
--Velxio: https://velxio.dev/davidhdez258/lab021/
+-Velxio: https://velxio.dev/davidhdez258/lab3.1
 
--Wokwi: https://wokwi.com/projects/475249203696297985
+-Wokwi: https://wokwi.com/projects/476535151317294081
 
-Simulación 4.2 PWM con LED y Potenciómetro para Brillo/Intensidad
+Simulación 3.2 
 
--Tinkercad: https://www.tinkercad.com/things/3Qwrx0dfMqf-lab022
+-Tinkercad: https://www.tinkercad.com/things/bnBPhbgM3HS-lab-32
 
--Velxio: https://velxio.dev/davidhdez258/lab022/
+-Velxio: https://velxio.dev/davidhdez258/lab3.2
 
--Wokwi: https://wokwi.com/projects/475251424671987713
+-Wokwi: https://wokwi.com/projects/476535867638454273
