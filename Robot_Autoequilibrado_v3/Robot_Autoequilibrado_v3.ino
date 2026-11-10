@@ -17,7 +17,7 @@ float angulo_pitch = 0;
 // Constantes PID (Deberás ajustar estas 3 variables para tu robot)
 float Kp = 10.5; // Fuerza de empuje principal
 float Ki = 0.0;  // Corrección a largo plazo
-float Kd = 1.5 ; // Suavizado de la oscilación
+float Kd = 0.5 ; // Suavizado de la oscilación
 
 // Variables de control
 float setpoint = 5.75; // Tu punto de equilibrio exacto
